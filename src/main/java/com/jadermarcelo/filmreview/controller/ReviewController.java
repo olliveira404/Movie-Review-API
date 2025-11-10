@@ -3,7 +3,6 @@ package com.jadermarcelo.filmreview.controller;
 import com.jadermarcelo.filmreview.model.Review;
 import com.jadermarcelo.filmreview.repository.ReviewRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -52,12 +51,9 @@ public class ReviewController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> deleteReview(@PathVariable Long id) {
-        if (repository.existsById(id)) {
-            repository.deleteById(id);
-            return ResponseEntity.ok("Filme deletado com sucesso!");
-        } else {
-            return ResponseEntity.status(404).body("Filme não encontrado!");
-        }
+    public void deleteReview(@PathVariable Long id) {
+
+        repository.deleteById(id);
+        
     }
 }
